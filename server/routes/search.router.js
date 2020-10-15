@@ -15,10 +15,10 @@ router.get("/", (req, res) => {
   stringParameter = `https://api.giphy.com/v1/gifs/search${stringParameter}`
   console.log(stringParameter);
     axios
-      .get(`https://api.giphy.com/v1/gifs/search${stringParameter}`)
+      .get(`${stringParameter}`)
       .then((response) => {
         console.log(response.data.data[0].images.original.url);
-        res.status(200).send(response.data.data[0].images.original.url); //need to fix
+        res.status(200).send(response.data.data[0].images.original.url); //need to
       })
       .catch((error) => {
         console.log(error);
