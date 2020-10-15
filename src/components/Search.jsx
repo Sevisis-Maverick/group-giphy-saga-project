@@ -16,7 +16,8 @@ class Search extends Component {
         //     payload: this.state.search
         // })
 
-        axios.get(`api/search/`, {searchParameter: this.state.search}).then((response) => {
+        const searchParameter = this.state.search;
+        axios.post(`api/search/`, {searchParameter}).then((response) => {
             console.log(response) // response.data will be an array containing string URLs
             this.setState({ results: response.data})
         })
@@ -37,8 +38,18 @@ class Search extends Component {
                 <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} type='text' placeholder='Enter Giphy Search HERE'></input>
                 <br />
                     <button type="submit" className="button">Search Giphy</button>
-                    <img src='https://media0.giphy.com/media/dIVa0pwco4Mj5rQ7gy/giphy.gif?cid=cbffb75exdtm4zv7sgwcebta9y8lslcapoifysvlci7gf2iw&rid=giphy.gif' />
-                </form>
+                    
+                    {/* this.state.results = ['URL1', 'URL2', 'URL3', ...] 
+                    when we call the .map method on that array 
+                    
+                    for(let i=0; i < this.state.results; i++){
+                        const urlString = this.state.reults[i]
+                        <img src= urlString />
+                    }
+                    */}
+                    {this.state.results.map((urlString) => <img src={`${urlString}`}></img>)}
+                    {/*mapped over the results array that contains the images sent back from the 3rd party API */}
+                    </form>
             </div>
         );
     }

@@ -3,13 +3,12 @@ require("dotenv").config();//needed for line 7.
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    
+router.post("/", (req, res) => {
+  let { searchParameter } = req.body;
+  console.log('body', req);
+  console.log('searchParam', searchParameter);
   let stringParameter = `?api_key=${process.env.GIPHY_API_KEY}`;//this is where your personal API key goes.
-  // if (req.params.tag) { 
-  //     stringParameter = stringParameter.concat(`&q=${req.params.tag}`);
-  // }
-  const { searchParameter } = req.body
+  
   stringParameter = stringParameter.concat(`&q=${searchParameter}`); //building the string up
   stringParameter = stringParameter.concat(`&limit=10`); //reduce the 'beta'/default limit from 50 to 10 imgObj returned from 3rd party API
   
@@ -26,9 +25,8 @@ router.get("/", (req, res) => {
           const imgObj = arrOfImgObjs[i];
           arrOfUrlImages.push(imgObj.images.downsized_large.url);
         }
-        console.log(arrOfUrlImages);
-        console.log(arrOfUrlImages.length);
-
+        // console.log(arrOfUrlImages);
+        // console.log(arrOfUrlImages.length);
         res.status(200).send(arrOfUrlImages); //pass array of URL images to frontend for rendering
       })
       .catch((error) => {
