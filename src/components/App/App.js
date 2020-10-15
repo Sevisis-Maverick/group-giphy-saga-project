@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Search from '../Search'
 
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
         <h1>Giphy Search!</h1>
 
         <h1>Hello</h1>
+        <Search />
       </div>
     );
   }

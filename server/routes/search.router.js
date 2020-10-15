@@ -11,14 +11,25 @@ router.get("/", (req, res) => {
   // }
   const { searchParameter } = req.body
   stringParameter = stringParameter.concat(`&q=${searchParameter}`); //building the string up
+  stringParameter = stringParameter.concat(`&limit=10`); //reduce the 'beta'/default limit from 50 to 10 imgObj returned from 3rd party API
   
   stringParameter = `https://api.giphy.com/v1/gifs/search${stringParameter}`
   console.log(stringParameter);
     axios
       .get(`${stringParameter}`)
       .then((response) => {
-        console.log(response.data.data[0].images.original.url);
-        res.status(200).send(response.data.data[0].images.original.url); //need to
+        //loop over response.data.data
+        //for each iteration, we need to push the image url into an array
+        let arrOfUrlImages = [];
+        let arrOfImgObjs = response.data.data;
+        for (let i = 0; i < arrOfImgObjs.length; i++) {
+          const imgObj = arrOfImgObjs[i];
+          arrOfUrlImages.push(imgObj.images.downsized_large.url);
+        }
+        console.log(arrOfUrlImages);
+        console.log(arrOfUrlImages.length);
+
+        res.status(200).send(arrOfUrlImages); //pass array of URL images to frontend for rendering
       })
       .catch((error) => {
         console.log(error);
