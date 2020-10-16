@@ -44,7 +44,7 @@ class Search extends Component {
             <div>
                 <h1>Find your fav Giphy!</h1>
                 <form onSubmit={this.onSubmit}>
-                <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} type='text' placeholder='Enter Giphy Search HERE'></input>
+                <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} type='text' placeholder='Giphy Search HERE'></input>
                 <br />
                 <button type="submit" className="button">Search Giphy</button>
                 </form>
@@ -56,7 +56,7 @@ class Search extends Component {
                         const urlString = this.state.reults[i]
                         <img src= urlString />
                     }
-                    */}
+                    a*/}
                     <br />
                     <Grid
             bg="transparent"

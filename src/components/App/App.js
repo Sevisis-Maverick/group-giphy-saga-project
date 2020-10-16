@@ -11,13 +11,11 @@ import customTheme from "./theme"
 class App extends Component {
 
   render() {
-    return (
-      <ThemeProvider theme={customTheme}>
-        {/* <CSSReset /> */}
+    return (  
         <Router>
-          <div className='app' color='orange400'>
+          <div className='app'>
             <nav>
-              <ul>
+              <ul id='navBar'>
                 <li><Link to='/'>Search</Link></li>
                 <li><Link to='/favorites'>Favorites</Link></li>
               </ul>
@@ -29,7 +27,6 @@ class App extends Component {
             <Route path="/favorites" component={Favorites} />
           </div>
         </Router>
-      </ThemeProvider>
     );
   }
   

@@ -19,17 +19,21 @@ class Favorites extends Component {
     //     console.log(this.state);
     // };
 
+    getData() {
+        axios.get('api/favorite/')
+                .then((response)=>{
+                    const allFavorites = response.data;
+                    console.log(allFavorites);
+                this.setState({ allFavorites });
+                })
+            .catch((error)=> console.log(error));
+    }
+
     componentDidMount() {
         //GET HERE.
         //get data from backend and render to the DOM.
         // arrofUrlStrings
-        axios.get('api/favorite/')
-            .then((response)=>{
-                const allFavorites = response.data;
-                console.log(allFavorites);
-               this.setState({ allFavorites });
-            })
-        .catch((error)=> console.log(error));
+        this.getData();
     };
 
 //     getData = () => {
@@ -43,6 +47,19 @@ class Favorites extends Component {
 //   };
 
     handleCategoryChange(id, category) {
+        console.log(id, category);
+        const categoryMapper = {
+            'funny': 1,
+            'cohort': 2,
+            'cartoon': 3,
+            'nsfw': 4,
+            'meme': 5,
+        }
+        let category_id = categoryMapper[category];
+        axios
+        .put(`/api/favorite/${id}`, { category, category_id })
+        .then(() => this.getData())
+        .catch((err) => console.log(err));
         console.log(id, category);
     }
 
@@ -62,12 +79,12 @@ class Favorites extends Component {
                         <br />
                         <label htmlFor="gifGenre">Pick a Category!</label>
                         <br />
-                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'funny')}>funny</button>
-                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'cohort')}>cohort</button>
-                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'nsfw')}>nsfw</button>
-                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'cartoon')}>cartoon</button>
-                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'meme')}>meme</button>
-                                <br />
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'funny')}>funny</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'cohort')}>cohort</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'nsfw')}>nsfw</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'cartoon')}>cartoon</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'meme')}>meme</button>
+                        <br />
                         </>
                         )
                     })}
