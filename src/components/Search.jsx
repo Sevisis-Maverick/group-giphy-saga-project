@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Box, Text } from "@chakra-ui/core";
+import { Grid, Box, Button } from "@chakra-ui/core";
 import axios from 'axios';
 
 class Search extends Component {
@@ -38,7 +38,7 @@ class Search extends Component {
         console.log(this.state.results);
         return (
             <div>
-                <h1>(Search Area)</h1>
+                <h1>Find your fav Giphy!</h1>
                 <form onSubmit={this.onSubmit}>
                 <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} type='text' placeholder='Enter Giphy Search HERE'></input>
                 <br />
