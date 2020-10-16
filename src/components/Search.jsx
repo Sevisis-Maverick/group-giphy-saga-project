@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid, Box, Text } from "@chakra-ui/core";
 import axios from 'axios';
 
 class Search extends Component {
@@ -7,6 +8,10 @@ class Search extends Component {
         search: '',
         results: [] //want an array of URL strings
     };
+
+    addToFav = (urlString) => {
+        console.log(urlString);
+    }
     
     onSubmit = (event) => {
         event.preventDefault();
@@ -37,7 +42,8 @@ class Search extends Component {
                 <form onSubmit={this.onSubmit}>
                 <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} type='text' placeholder='Enter Giphy Search HERE'></input>
                 <br />
-                    <button type="submit" className="button">Search Giphy</button>
+                <button type="submit" className="button">Search Giphy</button>
+                </form>
                     
                     {/* this.state.results = ['URL1', 'URL2', 'URL3', ...] 
                     when we call the .map method on that array 
@@ -47,9 +53,18 @@ class Search extends Component {
                         <img src= urlString />
                     }
                     */}
-                    {this.state.results.map((urlString) => <img src={`${urlString}`}></img>)}
-                    {/*mapped over the results array that contains the images sent back from the 3rd party API */}
-                    </form>
+                    <br />
+                    <Grid
+            bg="transparent"
+            margin={4}
+            justifyContent="center"
+            alignItems="center"
+            templateColumns="repeat(2, 1fr)"
+            gap={2}
+          >
+                        {this.state.results.map((urlString) => <Box><img src={`${urlString}`} /><br /><button onClick={() => this.addToFav(urlString)}>favorite this!</button></Box>)}
+                        {/*mapped over the results array that contains the images sent back from the 3rd party API */}
+                        </Grid>
             </div>
         );
     }

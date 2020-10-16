@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
   let stringParameter = `?api_key=${process.env.GIPHY_API_KEY}`;//this is where your personal API key goes.
   
   stringParameter = stringParameter.concat(`&q=${searchParameter}`); //building the string up
-  stringParameter = stringParameter.concat(`&limit=10`); //reduce the 'beta'/default limit from 50 to 10 imgObj returned from 3rd party API
+  stringParameter = stringParameter.concat(`&limit=5`); //reduce the 'beta'/default limit from 50 to 10 imgObj returned from 3rd party API
   
   stringParameter = `https://api.giphy.com/v1/gifs/search${stringParameter}`
   console.log(stringParameter);
