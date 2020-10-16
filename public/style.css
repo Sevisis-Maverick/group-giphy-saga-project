@@ -1,11 +1,20 @@
+#react-root {
+  background-color: #292929;
+  padding: 20px;
+}
+
 body {
   font-family: verdana, arial, serif;
-  color: #5070a0;
-  background-color: #292929;
-  margin: 30px;
+  color: #e0b004;
+  background-color: #2d2d2d;
+  margin: 25px;
 }
 
 nav > ul li {
   display: inline-block;
   width: 160px;
+}
+#navBar,
+a {
+  color: orange;
 }

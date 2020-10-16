@@ -45,7 +45,7 @@ class Search extends Component {
                 <h1>Find your fav Giphy!</h1>
                 <form onSubmit={this.onSubmit}>
                 <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} type='text' placeholder='Giphy Search HERE'></input>
-                <br />
+                <br /> <br />
                 <button type="submit" className="button">Search Giphy</button>
                 </form>
                     

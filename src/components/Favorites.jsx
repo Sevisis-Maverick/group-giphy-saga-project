@@ -91,6 +91,7 @@ class Favorites extends Component {
                                 <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'nsfw')}>nsfw</button>
                                 <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'cartoon')}>cartoon</button>
                                 <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'meme')}>meme</button>
+                                <div>You set it to: {imgDataObj.category ? imgDataObj.category : 'Nothing'}</div> 
                         <br />
                         </Box>
                         )
