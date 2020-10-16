@@ -13,9 +13,9 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={customTheme}>
-        <CSSReset />
+        {/* <CSSReset /> */}
         <Router>
-          <div className='app'>
+          <div className='app' color='orange400'>
             <nav>
               <ul>
                 <li><Link to='/'>Search</Link></li>

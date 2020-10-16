@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid, Box } from "@chakra-ui/core";
 import axios from 'axios';
 
 class Favorites extends Component {
@@ -10,12 +11,12 @@ class Favorites extends Component {
         allFavorites: [],
     };
 
-    changeHandler = (event) => {
-        this.setState({
-            favoritesBar: event.target.value,
-        });
-        console.log(this.state);
-    };
+    // changeHandler = (event) => {
+    //     this.setState({
+    //         favoritesBar: event.target.value,
+    //     });
+    //     console.log(this.state);
+    // };
 
     componentDidMount() {
         //GET HERE.
@@ -49,22 +50,26 @@ class Favorites extends Component {
       render() {
           console.log(this.state.allFavorites);
         return (
-            <div>
-                <h1>Favorites</h1>
-
-                <form>
-                <label for="gifGenre">Genre:</label>
-                    <br />
-                    
-                <select name="gifGenre" id="gifGenre">
-                    <option value="funny">Funny</option>
-                    <option value="cohort">Cohort</option>
-                    <option value="nsfw">Nsfw</option>
-                    <option value="cartoon">Cartoon</option>
-                    <option value="meme">Meme</option>
-                </select>
-                </form>
-            </div>
+          <div>
+            <h1>Favorites</h1>
+            <Box>
+            {this.state.allFavorites.map((imgDataObj) => (<img src={`${imgDataObj.url}`}/>))}
+                <br />
+            </Box>
+            {/*mapped over the allFavorites array that contains the images sent back from the 3rd party API */}
+            
+            <form>
+              <label for="gifGenre">Genre:</label>
+              <br />
+              <select name="gifGenre" id="gifGenre">
+                <option value="funny">Funny</option>
+                <option value="cohort">Cohort</option>
+                <option value="nsfw">Nsfw</option>
+                <option value="cartoon">Cartoon</option>
+                <option value="meme">Meme</option>
+              </select>
+            </form>
+          </div>
         );
     }
 
