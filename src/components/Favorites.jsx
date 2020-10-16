@@ -7,7 +7,7 @@ class Favorites extends Component {
     //axios PUT
 
      state = {
-        allFavorites: '',
+        allFavorites: [],
     };
 
     changeHandler = (event) => {
@@ -54,7 +54,8 @@ class Favorites extends Component {
 
                 <form>
                 <label for="gifGenre">Genre:</label>
-                <br />
+                    <br />
+                    
                 <select name="gifGenre" id="gifGenre">
                     <option value="funny">Funny</option>
                     <option value="cohort">Cohort</option>
