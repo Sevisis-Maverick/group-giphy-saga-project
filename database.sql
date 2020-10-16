@@ -23,3 +23,10 @@ VALUES ('https://media2.giphy.com/media/dIVa0pwco4Mj5rQ7gy/giphy.gif?cid=cbffb75
 INSERT INTO "category" ("name")
 VALUES ('funny'), ('cohort'), ('cartoon'), ('nsfw'), ('meme');
 --testing
+
+
+--make it so the category column can be null.. this is so we can add data to this table and users can UPDATE the category at a later time
+ALTER TABLE favorites ALTER category DROP NOT NULL;
+
+--add a foreign key that references id from category table
+ALTER TABLE favorites ADD COLUMN category_id INTEGER REFERENCES category;
