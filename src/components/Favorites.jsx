@@ -23,7 +23,6 @@ class Favorites extends Component {
         axios.get('api/favorite/')
                 .then((response)=>{
                     const allFavorites = response.data;
-                    console.log(allFavorites);
                 this.setState({ allFavorites });
                 })
             .catch((error)=> console.log(error));
@@ -47,7 +46,6 @@ class Favorites extends Component {
 //   };
 
     handleCategoryChange(id, category) {
-        console.log(id, category);
         const categoryMapper = {
             'funny': 1,
             'cohort': 2,
@@ -60,14 +58,13 @@ class Favorites extends Component {
         .put(`/api/favorite/${id}`, { category, category_id })
         .then(() => this.getData())
         .catch((err) => console.log(err));
-        console.log(id, category);
     }
 
 
 
       render() {
         return (
-          <div>
+          <div className='FavHeader'>
             <h1>Favorites</h1>
            <Grid
             bg="transparent"
@@ -81,7 +78,7 @@ class Favorites extends Component {
                 
                     {this.state.allFavorites.map((imgDataObj) => {
                         return (
-                        <Box>
+                            <Box key={imgDataObj.id}>
                         <img src={`${imgDataObj.url}`} />
                         <br />
                         <label htmlFor="gifGenre">Pick a Category!</label>

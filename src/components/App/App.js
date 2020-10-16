@@ -3,9 +3,6 @@ import Search from '../Search';
 import Favorites from '../Favorites'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import { ThemeProvider, CSSReset } from '@chakra-ui/core'
-import customTheme from "./theme"
-
 
 
 class App extends Component {
