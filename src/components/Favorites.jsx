@@ -8,7 +8,8 @@ class Favorites extends Component {
     //axios PUT
 
      state = {
-        allFavorites: [],
+         allFavorites: [],
+         category: ''
     };
 
     // changeHandler = (event) => {
@@ -41,47 +42,40 @@ class Favorites extends Component {
 //       .catch((err) => console.log(err));
 //   };
 
-    onClick = () => {
-        
-    };
+    handleCategoryChange(id, category) {
+        console.log(id, category);
+    }
 
 
 
       render() {
-          console.log(this.state.allFavorites);
         return (
           <div>
             <h1>Favorites</h1>
             <Box>
-            {this.state.allFavorites.map((imgDataObj) => (<img src={`${imgDataObj.url}`}/>))}
-                <br />
+                    {/*           displays favorites on the dom, need the .url because it returns an object so you have to grab the key */}
+                
+                    {this.state.allFavorites.map((imgDataObj) => {
+                        return (
+                        <>
+                        <img src={`${imgDataObj.url}`} />
+                        <br />
+                        <label htmlFor="gifGenre">Pick a Category!</label>
+                        <br />
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'funny')}>funny</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'cohort')}>cohort</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'nsfw')}>nsfw</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'cartoon')}>cartoon</button>
+                                <button onClick={(event) => this.handleCategoryChange(imgDataObj, 'meme')}>meme</button>
+                                <br />
+                        </>
+                        )
+                    })}
             </Box>
             {/*mapped over the allFavorites array that contains the images sent back from the 3rd party API */}
-            
-            <form>
-              <label for="gifGenre">Genre:</label>
-              <br />
-              <select name="gifGenre" id="gifGenre">
-                <option value="funny">Funny</option>
-                <option value="cohort">Cohort</option>
-                <option value="nsfw">Nsfw</option>
-                <option value="cartoon">Cartoon</option>
-                <option value="meme">Meme</option>
-              </select>
-            </form>
           </div>
         );
     }
 
 }
-{/* <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">
-    Dropdown
-  </button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div>; */}
 export default Favorites;
