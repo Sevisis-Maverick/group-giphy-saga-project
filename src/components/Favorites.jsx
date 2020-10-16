@@ -69,12 +69,19 @@ class Favorites extends Component {
         return (
           <div>
             <h1>Favorites</h1>
-            <Box>
+           <Grid
+            bg="transparent"
+            margin={4}
+            justifyContent="center"
+            alignItems="center"
+            templateColumns="repeat(2, 1fr)"
+            gap={2}
+          >
                     {/*           displays favorites on the dom, need the .url because it returns an object so you have to grab the key */}
                 
                     {this.state.allFavorites.map((imgDataObj) => {
                         return (
-                        <>
+                        <Box>
                         <img src={`${imgDataObj.url}`} />
                         <br />
                         <label htmlFor="gifGenre">Pick a Category!</label>
@@ -85,10 +92,10 @@ class Favorites extends Component {
                                 <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'cartoon')}>cartoon</button>
                                 <button onClick={(event) => this.handleCategoryChange(imgDataObj.id, 'meme')}>meme</button>
                         <br />
-                        </>
+                        </Box>
                         )
                     })}
-            </Box>
+            </Grid>
             {/*mapped over the allFavorites array that contains the images sent back from the 3rd party API */}
           </div>
         );

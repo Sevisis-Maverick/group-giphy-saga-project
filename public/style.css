@@ -1,5 +1,11 @@
-#react-root {
+body {
   font-family: verdana, arial, serif;
   color: #5070a0;
   background-color: #292929;
+  margin: 30px;
+}
+
+nav > ul li {
+  display: inline-block;
+  width: 160px;
 }
